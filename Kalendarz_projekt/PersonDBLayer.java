@@ -9,8 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class PersonDBLayer {
+
 	public Person loginPerson(String imie, String nazwisko, String haslo , int przyzwolenie) throws Exception {
 		Connection connection = null;
 		try {

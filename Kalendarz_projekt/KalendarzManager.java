@@ -2,11 +2,11 @@ package Kalendarz_projekt;
 
 import java.util.Scanner;
 
-
 public class KalendarzManager {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
 		PersonManager oc = new PersonManager();
 		
 		Scanner scan = new Scanner(System.in);
@@ -21,23 +21,113 @@ public class KalendarzManager {
 				String name = scan.nextLine();
 				System.out.println("Podaj nazwisko");
 				String lastName = scan.nextLine();
-				System.out.println("Podaj has硂");
+				System.out.println("Podaj has鲁o");
 				String password = scan.nextLine();
-				Person p = oc.loginPerson(name, lastName, password);
+				Person p = oc.loginPerson(name, lastName, password,przyzwolenie);
 				if (p != null) {
 					if (p.getPrzyzwolenie() == 1 ) {
-						
+						Boolean cot = true;
+						do {
+								System.out.println("zalogowano u偶ytkownika");
+								System.out.println("Co chcesz zrobi膰?");
+								System.out.println("[1]. Dodaj wpis");
+								System.out.println("[2]. Usun wpis");
+								System.out.println("[3]. Pokasz wszystkie wpisy");
+								String operation2 = scan.nextLine();
+								if ("1".equals(operation2)){
+									
+								}else if ("2".equals(operation2)) {
+									
+								}else if ("3".equals(operation2)) {
+									
+								}
+								
+						}while (cot);
 					}
 				} else {
-					
-					
+						Boolean connt = true;
+						do {
+							System.out.println("zalogowano administratora");
+							System.out.println("Co chcesz zrobi膰?");
+							System.out.println("[1]. Dodaj wpis");
+							System.out.println("[2]. Usun wpis");
+							System.out.println("[3]. Pokasz wszystkie wpisy");
+							System.out.println("[4]. Dodaj osobe");
+							System.out.println("[5]. Usun osobe");
+							System.out.println("[6]. Wyswietl liste os贸b");	
+							System.out.println("[7]. Koniec dzia艂ania aplikacji");
+							String operation1 = scan.nextLine();
+							if ("1".equals(operation1)) {
+								
+							}else if("2".equals(operation1)){
+									
+							}else if("3".equals(operation1)){
+									
+							}else if("4".equals(operation1)) {
+								System.out.println("Podaj imie");
+								String imie = scan.nextLine();
+								System.out.println("Podaj nazwisko");
+								String nazwisko = scan.nextLine();
+								System.out.println("Podaj has艂o");
+								String haslo = scan.nextLine();
+								Person p1 = new Person();
+								p1.setFirstName(imie);
+								p1.setLastName(nazwisko);
+								p1.setPassword(haslo);
+								try {
+									oc.addPerson(p1);
+								} catch (Exception e) {
+									System.out.println("B艂膮d w trakcie dodawania osoby: " + e);
+									e.printStackTrace();
+								}
+							} else if("5".equals(operation1)) {
+								System.out.println("Podaj nazw臋");
+								System.out.println("Lista os贸b:");
+								try {
+									for (Person p1 : oc.getPersons()) {
+										System.out.println(p1);
+									}
+								} catch (Exception e) {
+									System.out.println("B艂膮d w trakcie wy艣wietlania listy os贸b: " + e);
+									e.printStackTrace();
+								}
+								int personsID = scan.nextInt();
+								try {
+									if (!oc.removePerson(personsID))
+										System.out.println("Osoby nie ma na li艣cie");
+									else
+										System.out.println("Usuni臋to osoby z listy");
+								} catch (Exception e) {
+									System.out.println("B艂膮d w trakcie usuwania osoby: " + e);
+									e.printStackTrace();
+								}				
+								}else if ("6".equals(operation1)) {
+									System.out.println("Lista os贸b:");
+									try {
+										for (Person p1 : oc.getPersons()) {
+											System.out.println(p1);
+										}
+									} catch (Exception e) {
+										System.out.println("B艂膮d w trakcie wy艣wietlania listy os贸b: " + e);
+										e.printStackTrace();
+										}
+								} else if ("7".equals(operation1)) {
+									System.out.println("Bye.");
+									con = false;
+								} else {
+									System.out.println("Nieprawid艂owa operacja");
+								}
+						}
+						
+				while(connt);
+				
 				}
 			} else if ("2".equals(operation)) {
 				System.out.println("Podaj imie");
 				String name = scan.nextLine();
 				System.out.println("Podaj nazwisko");
 				String lastName = scan.nextLine();
-				System.out.println("Podaj has硂");
+				System.out.println("Podaj has鲁o");
 				String password = scan.nextLine();
 				Person p1 = new Person();
 				p1.setFirstName(name);
@@ -46,11 +136,12 @@ public class KalendarzManager {
 				try {
 					oc.addPerson(p1);
 				} catch (Exception e) {
-					System.out.println("B彻d w trakcie dodawania osoby: " + e);
+					System.out.println("B鲁鹿d w trakcie dodawania osoby: " + e);
 					e.printStackTrace();
 				}
-			}	
-		scan.close();
-		}while (con);
+			
+		    scan.close();
+			}
+		} while (con);
 	}
-}
+}	

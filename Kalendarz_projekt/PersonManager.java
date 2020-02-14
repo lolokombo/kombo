@@ -3,8 +3,8 @@ package Kalendarz_projekt;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class PersonManager {
+
 	private List<Person> persons;
 	private PersonDBLayer personsDB;
 	
@@ -12,8 +12,8 @@ public class PersonManager {
 		personsDB = new PersonDBLayer();
 		persons = new ArrayList<Person>();
 	}
-	public Person loginPerson (String firstName, String lastName, String password) throws Exception{
-		return personsDB.loginPerson(firstName , lastName , password);
+	public Person loginPerson (String firstName, String lastName, String password , int przyzwolenie) throws Exception{
+		return personsDB.loginPerson(firstName , lastName , password,przyzwolenie);
 	}
 	
 	public void addPerson (Person p) throws Exception {
@@ -59,5 +59,4 @@ public class PersonManager {
 			}
 		return null;
 	}
-
 }
