@@ -12,8 +12,8 @@ public class PersonManager {
 		personsDB = new PersonDBLayer();
 		persons = new ArrayList<Person>();
 	}
-	public Person loginPerson (String firstName, String lastName, String password , int przyzwolenie) throws Exception{
-		return personsDB.loginPerson(firstName , lastName , password,przyzwolenie);
+	public Person loginPerson (String firstName, String lastName, String password) throws Exception{
+		return personsDB.loginPerson(firstName , lastName , password);
 	}
 	
 	public void addPerson (Person p) throws Exception {
@@ -52,11 +52,12 @@ public class PersonManager {
 		return this.persons;
 	}
 	
-	public Person getPerson (String name, String lastName) {
+	public Person getPerson (String name, String lastName ,int id) {
 		for (Person p : persons)
-			if (p.getFirstName().equals(name) && p.getLastName().equals(lastName)){
+			if (p.getFirstName().equals(name) && p.getLastName().equals(lastName) && p.getId()==id){
 				return p;
 			}
 		return null;
+	
 	}
 }

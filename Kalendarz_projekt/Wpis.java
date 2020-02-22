@@ -4,7 +4,7 @@ public class Wpis {
 	
 	private int iD;
 	private String wpis;
-	private int wpisdata;
+	private String wpisdata;
 	
 	public int getId() {
 		return iD;
@@ -22,11 +22,15 @@ public class Wpis {
 		this.wpis = wpis;
 	}
 	
-	public int getWpisData() {
+	public String getWpisData() {
 		return wpisdata;
 	}
 
-	public void setWpisData(int wpisdata) {
+	public void setWpisData(String wpisdata) {
 		this.wpisdata = wpisdata;
+	}
+
+	public String toString() {
+		return this.iD + wpis + wpisdata; 
 	}
 }

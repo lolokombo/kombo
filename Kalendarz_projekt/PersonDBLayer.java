@@ -11,31 +11,31 @@ import java.util.List;
 
 public class PersonDBLayer {
 
-	public Person loginPerson(String imie, String nazwisko, String haslo , int przyzwolenie) throws Exception {
+	public Person loginPerson(String imie, String nazwisko, String haslo) throws Exception {
 		Connection connection = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-        	connection = DriverManager.getConnection("jdbc:sqlite:D:/DB/Klendarz.db");
+        	connection = DriverManager.getConnection("jdbc:sqlite:D:/DB/Kalendarz.db");
 
         	Statement statement = connection.createStatement();
         	statement.setQueryTimeout(30);
         	
-        	String sql = "SELECT Id,FirstName,LastName,Password,Przyzwolenie FROM Uzytkownicy WHERE FirstName = ? AND LastName = ? AND Password = ?)";
+        	String sql = "SELECT PersonID,FirstName,LastName,PasswordUser,Przyzwolenie FROM Uzytkownik WHERE FirstName = ? AND LastName = ? AND PasswordUser = ?";
         	
     		PreparedStatement pstmt = connection.prepareStatement(sql);
     		pstmt.setString(1,imie);
     		pstmt.setString(2,nazwisko);
     		pstmt.setString(3,haslo);
-    		pstmt.setInt(4,przyzwolenie);
     		pstmt.executeQuery();
     		ResultSet resultSet = pstmt.executeQuery();
     		if (resultSet.next()) {
     			Person p = new Person ();
     			p.setFirstName(imie);
     			p.setLastName(nazwisko);
-    			p.setId(resultSet.getInt(resultSet.getInt("PersonID")));
+    			p.setPassword(haslo);
+    			p.setId(resultSet.getInt("PersonID"));
     			//odczyt uprawnien
-    			p.setPrzyzwolenie(przyzwolenie);
+    			p.setPrzyzwolenie(resultSet.getInt("Przyzwolenie"));
     			return p;
     		} else {
     			return null;
@@ -59,12 +59,12 @@ public class PersonDBLayer {
 		Connection connection = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-        	connection = DriverManager.getConnection("jdbc:sqlite:D:/DB/Klendarz.db");
+        	connection = DriverManager.getConnection("jdbc:sqlite:D:/DB/Kalendarz.db");
 
         	Statement statement = connection.createStatement();
         	statement.setQueryTimeout(30); 
 
-        	String sql = "INSERT INTO Persons (FirstName,LastName,Password) values(?,?,?)";
+        	String sql = "INSERT INTO Uzytkownik (FirstName,LastName,PasswordUser) values(?,?,?)";
         	
     		PreparedStatement pstmt = connection.prepareStatement(sql);
     		pstmt.setString(1,prsn.getFirstName());
@@ -103,7 +103,7 @@ public class PersonDBLayer {
 	        	Statement statement = connection.createStatement();
 	        	statement.setQueryTimeout(30); 
 
-	        	statement.executeUpdate("DELETE FROM Persons WHERE name='"+ prsn.getId() + "'");
+	        	statement.executeUpdate("DELETE FROM Uzytkownik WHERE PersonID="+ prsn.getId());
 	        
 		}
 	    	catch(SQLException e){
@@ -136,7 +136,7 @@ public class PersonDBLayer {
 	         	Statement statement = connection.createStatement();
 	         	statement.setQueryTimeout(30); 
 
-	         	ResultSet resultSet = statement.executeQuery("SELECT PersonID, FirstName, LastName");
+	         	ResultSet resultSet = statement.executeQuery("SELECT PersonID, FirstName, LastName FROM Uzytkownik");
 	         	while(resultSet.next())
 	         	{
 	        	 	Person newPerson = new Person();

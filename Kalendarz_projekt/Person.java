@@ -53,6 +53,6 @@ public class Person {
 	}
 		
 	public String toString () {
-		return "Person name: " + this.firstName;
+		return "Person name and ID: " + this.id + this.firstName;
 	}
 }
