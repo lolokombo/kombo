@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WpisDBLayer {
- 
+	
 	public void addWpis(Wpis wwp) throws Exception {
 		Connection connection = null;
 		try {
@@ -90,13 +90,13 @@ public class WpisDBLayer {
 	         	Statement statement = connection.createStatement();
 	         	statement.setQueryTimeout(30); 
 
-	         	ResultSet resultSet = statement.executeQuery("SELECT WpisID, Wpis, WpisData");
+	         	ResultSet resultSet = statement.executeQuery("SELECT WpisID, Wpis, WpisData FROM Opis");
 	         	while(resultSet.next())
 	         	{
 	        	 	Wpis newWpis = new Wpis();
 	        	 	newWpis.setId(resultSet.getInt("WpisID"));
 	        	 	newWpis.setWpis(resultSet.getString("Wpis"));
-	        	 	newWpis.setWpis(resultSet.getString("WpisData"));
+	        	 	newWpis.setWpisData(resultSet.getString("WpisData"));
 	        	 	listOfWpisy.add (newWpis);
 	         	}
 		}

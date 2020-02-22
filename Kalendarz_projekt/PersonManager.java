@@ -3,8 +3,8 @@ package Kalendarz_projekt;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonManager {
 
+public class PersonManager {
 	private List<Person> persons;
 	private PersonDBLayer personsDB;
 	

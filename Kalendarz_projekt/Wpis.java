@@ -31,6 +31,7 @@ public class Wpis {
 	}
 
 	public String toString() {
-		return this.iD + wpis + wpisdata; 
+		return this.iD + " " + wpis + " " + wpisdata; 
 	}
+	
 }

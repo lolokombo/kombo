@@ -9,10 +9,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonDBLayer {
 
+public class PersonDBLayer {
 	public Person loginPerson(String imie, String nazwisko, String haslo) throws Exception {
 		Connection connection = null;
+		Person p = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
         	connection = DriverManager.getConnection("jdbc:sqlite:D:/DB/Kalendarz.db");
@@ -29,17 +30,14 @@ public class PersonDBLayer {
     		pstmt.executeQuery();
     		ResultSet resultSet = pstmt.executeQuery();
     		if (resultSet.next()) {
-    			Person p = new Person ();
+    			p = new Person ();
     			p.setFirstName(imie);
     			p.setLastName(nazwisko);
     			p.setPassword(haslo);
     			p.setId(resultSet.getInt("PersonID"));
     			//odczyt uprawnien
     			p.setPrzyzwolenie(resultSet.getInt("Przyzwolenie"));
-    			return p;
-    		} else {
-    			return null;
-    		}
+    		} 
     		
 		} catch(SQLException e){
 	    	System.err.println(e.getMessage());
@@ -54,6 +52,7 @@ public class PersonDBLayer {
 				System.err.println(e); 
 			}
 	    }
+		return p;
 	}
 	public void addPerson(Person prsn) throws Exception {
 		Connection connection = null;

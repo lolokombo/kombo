@@ -2,14 +2,13 @@ package Kalendarz_projekt;
 
 import java.util.Scanner;
 
-public class KalendarzManager {
 
+public class KalendarzManager {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PersonManager oc = new PersonManager();
 		WpisManager wm = new WpisManager();
-		MiesiacManager mm = new MiesiacManager();
 		
 		Scanner scan = new Scanner(System.in);
 		Boolean con = true;
@@ -23,7 +22,7 @@ public class KalendarzManager {
 				String name = scan.nextLine();
 				System.out.println("Podaj nazwisko");
 				String lastName = scan.nextLine();
-				System.out.println("Podaj hasÅ‚o");
+				System.out.println("Podaj has³o");
 				String password = scan.nextLine();
 				try {
 					Person p = oc.loginPerson(name, lastName, password);
@@ -31,18 +30,18 @@ public class KalendarzManager {
 						if (p.getPrzyzwolenie() == 1 ) {
 							Boolean cot = true;
 							do {
-									System.out.println("uÅ¼ytkownik");
-									System.out.println("Co chcesz zrobiÄ‡?");
+									System.out.println("u¿ytkownik");
+									System.out.println("Co chcesz zrobiæ?");
 									System.out.println("[1]. Dodaj wpis");
 									System.out.println("[2]. Usun wpis");
 									System.out.println("[3]. Pokasz wszystkie wpisy");
-									System.out.println("[4]. Koniec dziaÅ‚ania aplikacji");
+									System.out.println("[4]. Koniec dzia³ania aplikacji");
 									String operation2 = scan.nextLine();
 									if ("1".equals(operation2)){
 										System.out.println("Podaj numer wpisu");
 										int wpisid = scan.nextInt();
 										scan.nextLine();
-										System.out.println("Podaj zawartoÅ›Ä‡ wpisy");
+										System.out.println("Podaj zawartoœæ wpisy");
 										String wpis = scan.nextLine();
 										System.out.println("Podaj date wpisu");
 										String wpisdata = scan.nextLine();
@@ -53,71 +52,68 @@ public class KalendarzManager {
 										try {
 											wm.addWpis(wwp1);
 										} catch (Exception e) {
-											System.out.println("BÅ‚Ä…d w trakcie dodawania osoby: " + e);
+											System.out.println("B³¹d w trakcie dodawania osoby: " + e);
 											e.printStackTrace();
 										}
-										
+										System.out.println("Dodano wpis");
 									}else if ("2".equals(operation2)) {
 										System.out.println("Podaj ID wpisy");
-										System.out.println("Lista wpisÃ³w:");
+										System.out.println("Lista wpisów:");
 										try {
 											for (Wpis wwp1 : wm.getWpisy()) {
 												System.out.println(wwp1);
 											}
 										} catch (Exception e) {
-											System.out.println("BÅ‚Ä…d w trakcie wyÅ›wietlania listy wpisÃ³w: " + e);
+											System.out.println("B³¹d w trakcie wyœwietlania listy wpisów: " + e);
 											e.printStackTrace();
 										}
 										int WpisId = scan.nextInt();
 										try {
 											if (!wm.removeWpis(WpisId))
-												System.out.println("Wpisu nie ma na liÅ›cie");
+												System.out.println("Wpisu nie ma na liœcie");
 											else
-												System.out.println("UsuniÄ™to Wpis z listy");
+												System.out.println("Usuniêto Wpis z listy");
 										} catch (Exception e) {
-											System.out.println("BÅ‚Ä…d w trakcie usuwania wpisu: " + e);
+											System.out.println("B³¹d w trakcie usuwania wpisu: " + e);
 											e.printStackTrace();
 										}
 									}else if ("3".equals(operation2)) {
-										System.out.println("Lista wpisÃ³w:");
+										System.out.println("Lista wpisów:");
 										try {
 											for (Wpis wwp1 : wm.getWpisy()) {
 												System.out.println(wwp1);
 											}
 										} catch (Exception e) {
-											System.out.println("BÅ‚Ä…d w trakcie wyÅ›wietlania listy osÃ³b: " + e);
+											System.out.println("B³¹d w trakcie wyœwietlania listy osób: " + e);
 											e.printStackTrace();
 											}
 									} else if ("4".equals(operation2)) {
 										System.out.println("Bye.");
 										con = false;
+										cot = false;
 									} else {
-										System.out.println("NieprawidÅ‚owa operacja");
+										System.out.println("Nieprawid³owa operacja");
 									}
 									
 							}while (cot);
-						}
-					} else {
+						}else if(p.getPrzyzwolenie() == 2) {
 							Boolean connt = true;
 							do {
-								System.out.println("administrato");
-								System.out.println("Co chcesz zrobiÄ‡?");
+								System.out.println("administrator");
+								System.out.println("Co chcesz zrobiæ?");
 								System.out.println("[1]. Dodaj wpis");
 								System.out.println("[2]. Usun wpis");
 								System.out.println("[3]. Pokasz wszystkie wpisy");
 								System.out.println("[4]. Dodaj osobe");
 								System.out.println("[5]. Usun osobe");
-								System.out.println("[6]. Wyswietl liste osÃ³b");
-								System.out.println("[7]. Dodaj MiesiÄ…c");
-								System.out.println("[8]. Usun MiesiÄ…c");
-								System.out.println("[9]. PokaÅ¼ liste MiesiÄ™cy");
-								System.out.println("[10]. Koniec dziaÅ‚ania aplikacji");
+								System.out.println("[6]. Wyswietl liste osób");
+								System.out.println("[7]. Koniec dzia³ania aplikacji");
 								String operation1 = scan.nextLine();
 								if ("1".equals(operation1)){
 									System.out.println("Podaj numer wpisu");
 									int wpisid = scan.nextInt();
 									scan.nextLine();
-									System.out.println("Podaj zawartoÅ›Ä‡ wpisy");
+									System.out.println("Podaj zawartoœæ wpisy");
 									String wpis = scan.nextLine();
 									System.out.println("Podaj date wpisu");
 									String wpisdata = scan.nextLine();
@@ -128,39 +124,39 @@ public class KalendarzManager {
 									try {
 										wm.addWpis(wwp1);
 									} catch (Exception e) {
-										System.out.println("BÅ‚Ä…d w trakcie dodawania osoby: " + e);
+										System.out.println("B³¹d w trakcie dodawania osoby: " + e);
 										e.printStackTrace();
 									}
 									System.out.println("Dodano wpis");
 								}else if ("2".equals(operation1)) {
 									System.out.println("Podaj ID wpisy");
-									System.out.println("Lista wpisÃ³w:");
+									System.out.println("Lista wpisów:");
 									try {
 										for (Wpis wwp1 : wm.getWpisy()) {
 											System.out.println(wwp1);
 										}
 									} catch (Exception e) {
-										System.out.println("BÅ‚Ä…d w trakcie wyÅ›wietlania listy wpisÃ³w: " + e);
+										System.out.println("B³¹d w trakcie wyœwietlania listy wpisów: " + e);
 										e.printStackTrace();
 									}
 									int WpisId = scan.nextInt();
 									try {
 										if (!wm.removeWpis(WpisId))
-											System.out.println("Wpisu nie ma na liÅ›cie");
+											System.out.println("Wpisu nie ma na liœcie");
 										else
-											System.out.println("UsuniÄ™to Wpis z listy");
+											System.out.println("Usuniêto Wpis z listy");
 									} catch (Exception e) {
-										System.out.println("BÅ‚Ä…d w trakcie usuwania wpisu: " + e);
+										System.out.println("B³¹d w trakcie usuwania wpisu: " + e);
 										e.printStackTrace();
 									}
 								}else if ("3".equals(operation1)) {
-									System.out.println("Lista wpisÃ³w:");
+									System.out.println("Lista wpisów:");
 									try {
 										for (Wpis wwp1 : wm.getWpisy()) {
 											System.out.println(wwp1);
 										}
 									} catch (Exception e) {
-										System.out.println("BÅ‚Ä…d w trakcie wyÅ›wietlania listy osÃ³b: " + e);
+										System.out.println("B³¹d w trakcie wyœwietlania listy osób: " + e);
 										e.printStackTrace();
 										}	
 								}else if("4".equals(operation1)) {
@@ -168,7 +164,7 @@ public class KalendarzManager {
 									String imie = scan.nextLine();
 									System.out.println("Podaj nazwisko");
 									String nazwisko = scan.nextLine();
-									System.out.println("Podaj hasÅ‚o");
+									System.out.println("Podaj has³o");
 									String haslo = scan.nextLine();
 									Person p1 = new Person();
 									p1.setFirstName(imie);
@@ -177,98 +173,55 @@ public class KalendarzManager {
 									try {
 										oc.addPerson(p1);
 									} catch (Exception e) {
-										System.out.println("BÅ‚Ä…d w trakcie dodawania osoby: " + e);
+										System.out.println("B³¹d w trakcie dodawania osoby: " + e);
 										e.printStackTrace();
 									}
+									System.out.println("Dodano osobe");
 								} else if("5".equals(operation1)) {
 									System.out.println("Podaj ID");
-									System.out.println("Lista osÃ³b:");
+									System.out.println("Lista osób:");
 									try {
 										for (Person p1 : oc.getPersons()) {
 											System.out.println(p1);
 										}
 									} catch (Exception e) {
-										System.out.println("BÅ‚Ä…d w trakcie wyÅ›wietlania listy osÃ³b: " + e);
+										System.out.println("B³¹d w trakcie wyœwietlania listy osób: " + e);
 										e.printStackTrace();
 									}
 									int personsID = scan.nextInt();
 									scan.nextLine();
 									try {
 										if (!oc.removePerson(personsID))
-											System.out.println("Osoby nie ma na liÅ›cie");
+											System.out.println("Osoby nie ma na liœcie");
 										else
-											System.out.println("UsuniÄ™to osoby z listy");
+											System.out.println("Usuniêto osoby z listy");
 									} catch (Exception e) {
-										System.out.println("BÅ‚Ä…d w trakcie usuwania osoby: " + e);
+										System.out.println("B³¹d w trakcie usuwania osoby: " + e);
 										e.printStackTrace();
 									}				
 									}else if ("6".equals(operation1)) {
-										System.out.println("Lista osÃ³b:");
+										System.out.println("Lista osób:");
 										try {
 											for (Person p1 : oc.getPersons()) {
 												System.out.println(p1);
 											}
 										} catch (Exception e) {
-											System.out.println("BÅ‚Ä…d w trakcie wyÅ›wietlania listy osÃ³b: " + e);
+											System.out.println("B³¹d w trakcie wyœwietlania listy osób: " + e);
 											e.printStackTrace();
-											}
-									}else if("7".equals(operation1)){
-										System.out.println("Podaj Miesiac");
-										String mname = scan.nextLine();
-										Miesiac m1 = new Miesiac();
-										m1.setMiesiacName(mname);
-										try {
-											mm.addMiesiac(m1);
-										} catch (Exception e) {
-											System.out.println("BÅ‚Ä…d w trakcie dodawania osoby: " + e);
-											e.printStackTrace();
-										}
-											
-									}else if("8".equals(operation1)){
-										System.out.println("Podaj ID");
-										System.out.println("Lista miesiÄ™cy:");
-										try {
-											for (Miesiac m : mm.getMiesiace()) {
-												System.out.println(m);
-											}
-										} catch (Exception e) {
-											System.out.println("BÅ‚Ä…d w trakcie wyÅ›wietlania listy miesiecy: " + e);
-											e.printStackTrace();
-										}
-										int miesiaceID = scan.nextInt();
-										scan.nextLine();
-										try {
-											if (!oc.removePerson(miesiaceID))
-												System.out.println("Miesiaca nie ma na liÅ›cie");
-											else
-												System.out.println("UsuniÄ™to miesiac z listy");
-										} catch (Exception e) {
-											System.out.println("BÅ‚Ä…d w trakcie usuwania miesiaca: " + e);
-											e.printStackTrace();
-										}
-											
-									}else if("9".equals(operation1)){
-										System.out.println("Lista miesiÄ™cy:");
-										try {
-											for (Miesiac m  : mm.getMiesiace()) {
-												System.out.println(m);
-											}
-										} catch (Exception e) {
-											System.out.println("BÅ‚Ä…d w trakcie wyÅ›wietlania listy osÃ³b: " + e);
-											e.printStackTrace();
-											}
-											
-									} else if ("10".equals(operation1)) {
+											}											
+									} else if ("7".equals(operation1)) {
 										System.out.println("Bye.");
 										con = false;
 										connt = false;
 									}else {
-										System.out.println("NieprawidÅ‚owa operacja");
+										System.out.println("Nieprawid³owa operacja");
 									}
 							}
 							
 					while(connt);
-					
+					 }
+					} else {
+						System.out.println("Niepoprawne dane logowania lub nie ma takiej osoby"); 
 					}
 				} catch (Exception ex) {
 					System.out.println("");
@@ -279,7 +232,7 @@ public class KalendarzManager {
 				String name = scan.nextLine();
 				System.out.println("Podaj nazwisko");
 				String lastName = scan.nextLine();
-				System.out.println("Podaj hasÅ‚o");
+				System.out.println("Podaj has³o");
 				String password = scan.nextLine();
 				Person p1 = new Person();
 				p1.setFirstName(name);
@@ -288,7 +241,7 @@ public class KalendarzManager {
 				try {
 					oc.addPerson(p1);
 				} catch (Exception e) {
-					System.out.println("BÅ‚Ä…d w trakcie dodawania osoby: " + e);
+					System.out.println("B³¹d w trakcie dodawania osoby: " + e);
 					e.printStackTrace();
 				}
 			}	

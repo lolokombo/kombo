@@ -49,9 +49,9 @@ public class WpisManager {
 		return this.Wpisy;
 	}
 	
-	public Wpis getWpis (int Id, String Wpis,String wpisdata) {
+	public Wpis getWpis (int Id, String wpis,String wpisdata) {
 		for (Wpis wwp : Wpisy)
-			if (wwp.getId()==Id && wwp.getWpis().equals(Wpis) && wwp.getWpisData().equals(wpisdata)){
+			if (wwp.getId()==Id && wwp.getWpis().equals(wpis) && wwp.getWpisData().equals(wpisdata)){
 				return wwp;
 			}
 		return null;
